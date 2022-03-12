@@ -1,0 +1,46 @@
+<idea-plugin>
+  <id>Aurora</id>
+  <name>Aurora</name>
+  <version>1.0</version>
+  <vendor email="zhiwen_der@qq.com" url="https://www.go-Aurora.cn">Aurora-go</vendor>
+
+  <description>
+    <![CDATA[..............................................................................]]>
+  </description>
+
+
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
+  <idea-version since-build="213"/>
+
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+       on how to target different products -->
+<!--  以来添加-->
+  <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.java</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+<!--  添加IDE对Aurora Framework的项目支持-->
+    <framework.type implementation="Aurora.Modules.AuroraFramework" id="AuroraFramework"/>
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+
+  </actions>
+
+  <applicationListeners>
+<!--      项目管理监听器-->
+      <listener class="Aurora.Listeners.ProjectManagerListeners" topic="com.intellij.openapi.project.ProjectManagerListener"/>
+
+  </applicationListeners>
+
+
+  <projectListeners>
+
+    <listener class="Aurora.Listeners.IDEToolWindowListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+
+    <listener class="Aurora.Listeners.ApplicationListener" topic="com.intellij.ide.AppLifecycleListener"/>
+
+  </projectListeners>
+
+</idea-plugin>
