@@ -1,4 +1,4 @@
-package Aurora.Modules;
+package Aurora.Framework;
 
 import Aurora.Logo.PluginIco;
 import com.intellij.framework.FrameworkTypeEx;

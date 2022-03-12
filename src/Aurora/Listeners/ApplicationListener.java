@@ -12,7 +12,7 @@ public final class ApplicationListener implements AppLifecycleListener {
 
     @Override
     public void appFrameCreated(@NotNull List<String> commandLineArgs) {
-        System.out.println("框架创建");
+
         AppLifecycleListener.super.appFrameCreated(commandLineArgs);
     }
 

@@ -1,14 +1,18 @@
-package Aurora.Modules;
+package Aurora.Framework;
 
 import com.intellij.framework.addSupport.FrameworkSupportInModuleConfigurable;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ModifiableModelsProvider;
 import com.intellij.openapi.roots.ModifiableRootModel;
+import com.intellij.openapi.roots.ModuleRootManager;
+import com.intellij.openapi.roots.impl.OrderEntryUtil;
+import com.intellij.openapi.roots.libraries.Library;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.List;
 
 public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
 
@@ -28,7 +32,7 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
         /*
          *   框架被选中时候的 配置面板
          * */
-        return new JCheckBox("Vue Template");
+        return null;
     }
 
     @Override
@@ -39,7 +43,20 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
         // 这是设置库、生成特定文件等的地方
         // 并实际为模块添加框架支持
         // 在点击下一步时候被执行
-        CreateAuroraWebProjectStructure(path);
+
+        List<Library> moduleLibraries = OrderEntryUtil.getModuleLibraries(ModuleRootManager.getInstance(module));
+        for (Library library:moduleLibraries){
+            System.out.println(library.getName());
+        }
+        Thread thread=new Thread(() -> {
+//            try {
+//                Thread.sleep(50000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+            CreateAuroraWebProjectStructure(path);
+        });
+        thread.start();
     }
 
 

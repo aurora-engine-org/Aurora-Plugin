@@ -16,21 +16,56 @@
        on how to target different products -->
 <!--  以来添加-->
   <depends>com.intellij.modules.platform</depends>
-  <depends>com.intellij.java</depends>
+  <depends>com.intellij.modules.java</depends>
+  <depends>com.intellij.modules.go-capable</depends>
 
   <extensions defaultExtensionNs="com.intellij">
+
+<!--  添加IDE对Aurora Framework的模块支持 -->
+    <moduleType id="aurora_web_module_type" implementationClass="Aurora.Modules.AuroraModule"/>
 <!--  添加IDE对Aurora Framework的项目支持-->
-    <framework.type implementation="Aurora.Modules.AuroraFramework" id="AuroraFramework"/>
+    <framework.type implementation="Aurora.Framework.AuroraFramework" id="AuroraFramework"/>
+
   </extensions>
 
   <actions>
     <!-- Add your actions here -->
 
+
+<!--    <action id="ProjectModel.SourceRoots" class="org.intellij.sdk.project.model.ShowSourceRootsActions"-->
+<!--            text="Show Source Roots"-->
+<!--            description="Illustrates how to get source roots">-->
+<!--      <add-to-group group-id="ToolsMenu" anchor="first"/>-->
+<!--    </action>-->
+<!--    <action id="ProjectModel.ProjectSdk" class="org.intellij.sdk.project.model.ProjectSdkAction"-->
+<!--            text="Show Sdk Info"-->
+<!--            description="Illustrates how to get Sdk info">-->
+<!--      <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="ProjectModel.SourceRoots"/>-->
+<!--    </action>-->
+    <action id="ProjectModel.ProjectFileIndex"
+            class="Aurora.Action.TestAction"
+            text="FileProjectIndex in Action"
+            description="Illustrates how to get source roots">
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+    </action>
+<!--    <action id="ProjectModel.ModificationAction" class="org.intellij.sdk.project.model.ModificationAction"-->
+<!--            text="Project Modification in Action"-->
+<!--            description="Illustrates how to get source roots">-->
+<!--      -->
+<!--      <add-to-group group-id="EditorPopupMenu" anchor="last"/>-->
+<!--    </action>-->
+<!--    <action id="ProjectModel.LibrariesAction" class="org.intellij.sdk.project.model.LibrariesAction"-->
+<!--            text="Libraries for File"-->
+<!--            description="Illustrates accessing libraries">-->
+<!--      <add-to-group group-id="EditorPopupMenu" anchor="last"/>-->
+<!--    </action>-->
   </actions>
 
   <applicationListeners>
 <!--      项目管理监听器-->
       <listener class="Aurora.Listeners.ProjectManagerListeners" topic="com.intellij.openapi.project.ProjectManagerListener"/>
+
+    <listener class="Aurora.Listeners.RootModuleListener" topic="com.intellij.openapi.roots.ModuleRootListener"/>
 
   </applicationListeners>
 
