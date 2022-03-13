@@ -14,7 +14,7 @@ import javax.swing.*;
 public class AuroraModuleProvider extends FrameworkSupportInModuleProvider {
 
     private static AuroraModuleProvider provider=new AuroraModuleProvider();
-
+    private String Module="Java Module";
     private AuroraModuleProvider() {
 
     }
@@ -37,7 +37,7 @@ public class AuroraModuleProvider extends FrameworkSupportInModuleProvider {
     @Override
     public @NotNull
     Icon getIcon() {
-        return PluginIco.Aurora_Logo;
+        return PluginIco.Logo;
     }
 
     @NotNull
@@ -51,10 +51,9 @@ public class AuroraModuleProvider extends FrameworkSupportInModuleProvider {
         /*
          *   把 框架类型 放到指定的向导模块下面
          * */
-        String name = type.getName();
-        if (name.equals("Web Module")){
-            return true;
+        if (type.getName().equals(Module)){
+            return false;
         }
-        return false;
+        return true;
     }
 }

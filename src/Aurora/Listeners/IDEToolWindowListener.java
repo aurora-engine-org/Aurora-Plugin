@@ -7,8 +7,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class IDEToolWindowListener implements ToolWindowManagerListener {
     private final Project project;
-    public IDEToolWindowListener(Project project) {
 
+    public IDEToolWindowListener(Project project) {
+//        System.out.println("IDEToolWindowListener");
         this.project = project;
     }
 

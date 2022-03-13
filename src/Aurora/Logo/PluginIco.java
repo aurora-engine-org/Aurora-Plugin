@@ -9,6 +9,6 @@ import javax.swing.*;
 * */
 public class PluginIco {
 
-    public static final Icon Aurora_Logo = IconLoader.getIcon("img.png", PluginIco.class);
+    public static final Icon Logo = IconLoader.getIcon("META-INF/img.png", PluginIco.class);
 
 }

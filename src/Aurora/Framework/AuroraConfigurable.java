@@ -6,6 +6,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ModifiableModelsProvider;
 import com.intellij.openapi.roots.ModifiableRootModel;
 import com.intellij.openapi.roots.ModuleRootManager;
+import com.intellij.openapi.roots.OrderEnumerator;
 import com.intellij.openapi.roots.impl.OrderEntryUtil;
 import com.intellij.openapi.roots.libraries.Library;
 import org.jetbrains.annotations.NotNull;
@@ -19,6 +20,7 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
     private static final AuroraConfigurable Config =new AuroraConfigurable();
 
     private String path;
+    private boolean vue;
 
     public static AuroraConfigurable getInstance(){
         return Config;
@@ -35,6 +37,7 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
         return null;
     }
 
+
     @Override
     public void addSupport(@NotNull Module module, @NotNull ModifiableRootModel rootModel, @NotNull ModifiableModelsProvider modifiableModelsProvider) {
         //初始化 project 对象
@@ -43,26 +46,22 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
         // 这是设置库、生成特定文件等的地方
         // 并实际为模块添加框架支持
         // 在点击下一步时候被执行
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.currentThread().sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                CreateAuroraWebProjectStructure(path);
+            }
+        }).start();
 
-        List<Library> moduleLibraries = OrderEntryUtil.getModuleLibraries(ModuleRootManager.getInstance(module));
-        for (Library library:moduleLibraries){
-            System.out.println(library.getName());
-        }
-        Thread thread=new Thread(() -> {
-//            try {
-//                Thread.sleep(50000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-            CreateAuroraWebProjectStructure(path);
-        });
-        thread.start();
     }
-
-
     public void CreateAuroraWebProjectStructure(String root) {
 
-        File main = new File(root, "main.go");
+        File main = new File(root, "app.go");
         File webStatic = new File(root, "webStatic");
         File config = new File(root, "application.yml");
         FileWriter writerGo=null;

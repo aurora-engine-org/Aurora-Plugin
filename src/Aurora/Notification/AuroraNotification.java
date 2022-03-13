@@ -14,7 +14,8 @@ public class AuroraNotification implements Notifications {
 
     @Override
     public void notify(@NotNull Notification notification) {
-
+        String title = notification.getTitle();
+        System.out.println("title:"+title);
         Notifications.super.notify(notification);
     }
 }

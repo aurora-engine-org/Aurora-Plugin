@@ -53,7 +53,7 @@ public class AuroraModule extends ModuleType<AuroraModuleBuilder> {
     * */
     @Override
     public @NotNull Icon getNodeIcon(boolean b) {
-        return PluginIco.Aurora_Logo;
+        return PluginIco.Logo;
     }
 
 

@@ -12,23 +12,29 @@ public final class ApplicationListener implements AppLifecycleListener {
 
     @Override
     public void appFrameCreated(@NotNull List<String> commandLineArgs) {
-
+//        System.out.println("appFrameCreated");
+        for (String s:commandLineArgs){
+            System.out.println(s);
+        }
         AppLifecycleListener.super.appFrameCreated(commandLineArgs);
     }
 
+    /*
+    *   欢迎窗口 被执行
+    * */
     @Override
     public void welcomeScreenDisplayed() {
-        System.out.println("welcomeScreenDisplayed");
+//        System.out.println("welcomeScreenDisplayed");
         AppLifecycleListener.super.welcomeScreenDisplayed();
     }
 
 
     /*
-    *   向导创建后执行
+    *   启动IDE 软件执行
     * */
     @Override
     public void appStarted() {
-        System.out.println("appStarted");
+//        System.out.println("appStarted");
         AppLifecycleListener.super.appStarted();
     }
 
@@ -38,7 +44,7 @@ public final class ApplicationListener implements AppLifecycleListener {
     * */
     @Override
     public void appWillBeClosed(boolean isRestart) {
-        System.out.println("appWillBeClosed");
+//        System.out.println("appWillBeClosed");
         AppLifecycleListener.super.appWillBeClosed(isRestart);
     }
     /*
@@ -46,7 +52,7 @@ public final class ApplicationListener implements AppLifecycleListener {
      * */
     @Override
     public void appClosing() {
-        System.out.println("appClosing");
+//        System.out.println("appClosing");
         AppLifecycleListener.super.appClosing();
     }
 

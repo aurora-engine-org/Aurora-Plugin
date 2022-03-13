@@ -36,6 +36,6 @@ public class AuroraFramework extends FrameworkTypeEx {
 
     @Override
     public @NotNull Icon getIcon() {
-        return PluginIco.Aurora_Logo;
+        return PluginIco.Logo;
     }
 }

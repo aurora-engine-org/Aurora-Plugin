@@ -71,8 +71,6 @@ public class AuroraModuleBuilder extends ModuleBuilder {
                 Map<String, String> getenv = System.getenv();
                 getenv.get("");
 
-
-
                 jbPanelJBPanel.add(label);
                 jbPanelJBPanel.add(jbLabelComboBox);
                 jbPanelJBPanel.add(jButton);

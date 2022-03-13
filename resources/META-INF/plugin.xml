@@ -1,81 +1,52 @@
 <idea-plugin>
   <id>Aurora</id>
   <name>Aurora</name>
-  <version>1.0</version>
-  <vendor email="zhiwen_der@qq.com" url="https://www.go-Aurora.cn">Aurora-go</vendor>
-
+  <version>1.0.0</version>
+  <vendor email="zhiwen_der@qq.com" url="https://www.go-aurora.cn">Aurora-go</vendor>
   <description>
-    <![CDATA[..............................................................................]]>
+    <![CDATA[
+    Aurora web 框架的项目模板创建插件,有关模板中创建出来的文件内容详细说明可以找到这个库查看, github: https://github.com/aurora-go/template <br>
+    有关Aurora web 框架的使用指南可以在 https://github.com/aurora-go/aurora  中找到 <br>
+    使用插件之前你需要做到以下几点:<br>
+   <ol>
+    <li>已经安装了golang sdk</li>
+    <li>IDEA 中安装了go扩展</li>
+   </ol>
+]]>
   </description>
 
-
-  <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
   <idea-version since-build="213"/>
 
-  <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
-       on how to target different products -->
-<!--  以来添加-->
+  <!-- Short summary of new features and bugfixes in the latest plugin version.
+       Displayed on the Plugin Page and IDE Plugin Manager. Simple HTML elements can be included between <![CDATA[  ]]> tags. -->
+  <change-notes>Initial release of the plugin.</change-notes>
+
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.java</depends>
-  <depends>com.intellij.modules.go-capable</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-
-<!--  添加IDE对Aurora Framework的模块支持 -->
-    <moduleType id="aurora_web_module_type" implementationClass="Aurora.Modules.AuroraModule"/>
-<!--  添加IDE对Aurora Framework的项目支持-->
+<!--  添加IDE对Aurora Framework的模块支持 未完成-->
+<!--    <moduleType id="aurora_web_module_type" implementationClass="Aurora.Modules.AuroraModule"/>-->
+<!--  添加IDE对Aurora Framework的项目支持 核心-->
     <framework.type implementation="Aurora.Framework.AuroraFramework" id="AuroraFramework"/>
 
   </extensions>
 
   <actions>
     <!-- Add your actions here -->
-
-
-<!--    <action id="ProjectModel.SourceRoots" class="org.intellij.sdk.project.model.ShowSourceRootsActions"-->
-<!--            text="Show Source Roots"-->
-<!--            description="Illustrates how to get source roots">-->
-<!--      <add-to-group group-id="ToolsMenu" anchor="first"/>-->
-<!--    </action>-->
-<!--    <action id="ProjectModel.ProjectSdk" class="org.intellij.sdk.project.model.ProjectSdkAction"-->
-<!--            text="Show Sdk Info"-->
-<!--            description="Illustrates how to get Sdk info">-->
-<!--      <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="ProjectModel.SourceRoots"/>-->
-<!--    </action>-->
-    <action id="ProjectModel.ProjectFileIndex"
-            class="Aurora.Action.TestAction"
-            text="FileProjectIndex in Action"
-            description="Illustrates how to get source roots">
-      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-    </action>
-<!--    <action id="ProjectModel.ModificationAction" class="org.intellij.sdk.project.model.ModificationAction"-->
-<!--            text="Project Modification in Action"-->
-<!--            description="Illustrates how to get source roots">-->
-<!--      -->
-<!--      <add-to-group group-id="EditorPopupMenu" anchor="last"/>-->
-<!--    </action>-->
-<!--    <action id="ProjectModel.LibrariesAction" class="org.intellij.sdk.project.model.LibrariesAction"-->
-<!--            text="Libraries for File"-->
-<!--            description="Illustrates accessing libraries">-->
-<!--      <add-to-group group-id="EditorPopupMenu" anchor="last"/>-->
-<!--    </action>-->
   </actions>
 
   <applicationListeners>
-<!--      项目管理监听器-->
       <listener class="Aurora.Listeners.ProjectManagerListeners" topic="com.intellij.openapi.project.ProjectManagerListener"/>
-
-    <listener class="Aurora.Listeners.RootModuleListener" topic="com.intellij.openapi.roots.ModuleRootListener"/>
-
+      <listener class="Aurora.Listeners.ApplicationListener" topic="com.intellij.ide.AppLifecycleListener"/>
+      <listener class="Aurora.Listeners.AuroraVirtualFileAppearanceListener" topic="com.intellij.ide.ui.VirtualFileAppearanceListener"/>
   </applicationListeners>
 
-
   <projectListeners>
-
     <listener class="Aurora.Listeners.IDEToolWindowListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
-
-    <listener class="Aurora.Listeners.ApplicationListener" topic="com.intellij.ide.AppLifecycleListener"/>
-
+    <listener class="Aurora.Listeners.AuroraProjectViewListener" topic="com.intellij.ide.projectView.impl.ProjectViewListener"/>
+    <listener class="Aurora.Listeners.AuroraProjectWorkspaceModelChangeListener" topic="com.intellij.workspaceModel.ide.WorkspaceModelChangeListener"/>
+    <listener class="Aurora.Listeners.AuroraProjectJpsProjectLoadedListener" topic="com.intellij.workspaceModel.ide.JpsProjectLoadedListener"/>
   </projectListeners>
 
 </idea-plugin>

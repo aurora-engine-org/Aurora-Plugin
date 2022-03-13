@@ -20,31 +20,30 @@ import java.util.List;
 public class ProjectManagerListeners implements ProjectManagerListener {
     @Override
     public void projectOpened(@NotNull Project project) {
-        System.out.println("project Opened");
+//        System.out.println("project Opened");
         /*
         *   打开项目，或者创建项目执行一次
         *   此处可以用来执行初始化命令 比如 go mod tidy 等
         * */
-
 
         ProjectManagerListener.super.projectOpened(project);
     }
 
     @Override
     public void projectClosed(@NotNull Project project) {
-        System.out.println("project Closed");
+//        System.out.println("project Closed");
         ProjectManagerListener.super.projectClosed(project);
     }
 
     @Override
     public void projectClosing(@NotNull Project project) {
-        System.out.println("project Closing");
+//        System.out.println("project Closing");
         ProjectManagerListener.super.projectClosing(project);
     }
 
     @Override
     public void projectClosingBeforeSave(@NotNull Project project) {
-        System.out.println("projectClosing BeforeSave");
+//        System.out.println("projectClosing BeforeSave");
         ProjectManagerListener.super.projectClosingBeforeSave(project);
     }
 }
