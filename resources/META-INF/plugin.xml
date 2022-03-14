@@ -39,14 +39,15 @@
   <applicationListeners>
       <listener class="Aurora.Listeners.ProjectManagerListeners" topic="com.intellij.openapi.project.ProjectManagerListener"/>
       <listener class="Aurora.Listeners.ApplicationListener" topic="com.intellij.ide.AppLifecycleListener"/>
-      <listener class="Aurora.Listeners.AuroraVirtualFileAppearanceListener" topic="com.intellij.ide.ui.VirtualFileAppearanceListener"/>
+      <listener class="Aurora.Listeners.AuroraBulkFileListener" topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+      <listener class="Aurora.Listeners.AuroraEditorFactoryListener" topic="com.intellij.openapi.editor.event.EditorFactoryListener"/>
   </applicationListeners>
 
   <projectListeners>
-    <listener class="Aurora.Listeners.IDEToolWindowListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+    <listener class="Aurora.Listeners.ToolWindowListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
     <listener class="Aurora.Listeners.AuroraProjectViewListener" topic="com.intellij.ide.projectView.impl.ProjectViewListener"/>
     <listener class="Aurora.Listeners.AuroraProjectWorkspaceModelChangeListener" topic="com.intellij.workspaceModel.ide.WorkspaceModelChangeListener"/>
-    <listener class="Aurora.Listeners.AuroraProjectJpsProjectLoadedListener" topic="com.intellij.workspaceModel.ide.JpsProjectLoadedListener"/>
+    <listener class="Aurora.Listeners.AuroraEditorFactoryListener" topic="com.intellij.openapi.editor.event.EditorFactoryListener"/>
   </projectListeners>
 
 </idea-plugin>

@@ -1,16 +1,19 @@
 package Aurora.Listeners;
 
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.wm.ex.ToolWindowManagerListener;
+import com.intellij.util.indexing.diagnostic.dump.paths.PortableFilePath;
 import org.jetbrains.annotations.NotNull;
 
-public class IDEToolWindowListener implements ToolWindowManagerListener {
+public class ToolWindowListener implements ToolWindowManagerListener {
     private final Project project;
 
-    public IDEToolWindowListener(Project project) {
+    public ToolWindowListener(Project project) {
 //        System.out.println("IDEToolWindowListener");
         this.project = project;
+
     }
 
     @Override
