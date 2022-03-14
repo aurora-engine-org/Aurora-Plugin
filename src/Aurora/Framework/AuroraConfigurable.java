@@ -2,13 +2,21 @@ package Aurora.Framework;
 
 import Aurora.AuroraInstance;
 import com.intellij.framework.addSupport.FrameworkSupportInModuleConfigurable;
+import com.intellij.ide.util.RunOnceUtil;
 import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.editor.EditorFactory;
+import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.roots.ModifiableModelsProvider;
 import com.intellij.openapi.roots.ModifiableRootModel;
 import com.intellij.openapi.roots.ProjectRootManager;
+import com.intellij.openapi.vfs.LocalFileSystem;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.VirtualFileManager;
+import com.intellij.psi.FileViewProvider;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -123,6 +131,16 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
 
             //使用消息通知组 发送一个消息消息提示框表示模板创建完成
             NotificationGroupManager.getInstance().getNotificationGroup("INFO_Notification").createNotification("aurora web project template created successfully!!", NotificationType.INFORMATION).notify(AuroraInstance.project);
+//            RunOnceUtil.runOnceForProject(AuroraInstance.project,"open application.go",()->{
+//                VirtualFile virtualFile = LocalFileSystem.getInstance().findFileByPath(AuroraInstance.path);
+//                assert virtualFile != null;
+//                VirtualFile child = virtualFile.findChild("app.go");
+//                assert child != null;
+//                PsiFile file = PsiManager.getInstance(AuroraInstance.project).findFile(child);
+//                assert file != null;
+//                FileViewProvider viewProvider = file.getViewProvider();
+//                viewProvider.getPsi();
+//            });
         }
 
 
