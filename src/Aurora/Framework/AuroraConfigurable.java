@@ -1,31 +1,26 @@
 package Aurora.Framework;
 
+import Aurora.AuroraInstance;
 import com.intellij.framework.addSupport.FrameworkSupportInModuleConfigurable;
-import com.intellij.openapi.fileEditor.FileEditorManager;
+import com.intellij.notification.NotificationGroupManager;
+import com.intellij.notification.NotificationType;
+import com.intellij.openapi.editor.EditorFactory;
 import com.intellij.openapi.module.Module;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.roots.*;
-import com.intellij.openapi.roots.impl.OrderEntryUtil;
-import com.intellij.openapi.roots.libraries.Library;
-import com.intellij.openapi.vfs.LocalFileSystem;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.VirtualFileManager;
-import com.intellij.openapi.vfs.newvfs.RefreshQueue;
-import com.intellij.util.indexing.FileBasedIndex;
+import com.intellij.openapi.roots.ModifiableModelsProvider;
+import com.intellij.openapi.roots.ModifiableRootModel;
+import com.intellij.openapi.roots.ProjectRootManager;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.io.*;
-import java.nio.file.Path;
-import java.util.List;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
 
     private static final AuroraConfigurable Config =new AuroraConfigurable();
-
-    public static String path;
-    public static Project project;
-    private boolean vue;
 
     public static AuroraConfigurable getInstance(){
         return Config;
@@ -45,37 +40,11 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
 
     @Override
     public void addSupport(@NotNull Module module, @NotNull ModifiableRootModel rootModel, @NotNull ModifiableModelsProvider modifiableModelsProvider) {
-        //初始化 project 对象
-        project = rootModel.getProject();
-        path= project.getBasePath();
-        // 这是设置库、生成特定文件等的地方
-        // 并实际为模块添加框架支持
-        // 在点击下一步时候被执行
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    Thread.currentThread().sleep(5000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//                CreateAuroraWebProjectStructure(path);
-//            }
-//        }).start();
-        CreateAuroraWebProjectStructure(path);
-
-        VirtualFile virtualFile = LocalFileSystem.getInstance().findFileByNioFile(Path.of(path));
-
-        VirtualFile[] children = virtualFile.getChildren();
-        for (VirtualFile vf:children){
-            System.out.println("name:"+vf.getName());
-        }
-
-
-
-
-
+        //初始化 全局变量
+        AuroraInstance.project = rootModel.getProject();
+        AuroraInstance.path= rootModel.getProject().getBasePath();
+        AuroraInstance.module=module;
+        AuroraInstance.modifiableModelsProvider=modifiableModelsProvider;
     }
     public static void CreateAuroraWebProjectStructure(String root) {
 
@@ -85,7 +54,6 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
         FileWriter writerGo=null;
         FileWriter writerHtml=null;
         FileWriter writerConfig=null;
-
 
         try {
             writerGo=new FileWriter(main);
@@ -103,6 +71,7 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
                     "\n" +
                     "\ta.Guide(\"\")\n" +
                     "}");
+
             if (!webStatic.exists()){
                 if (webStatic.mkdir()){
                     File html = new File(webStatic, "index.html");
@@ -129,7 +98,7 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
                     "    static: webStatic");
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (writerGo!=null){
                 try {
                     writerGo.close();
@@ -151,6 +120,9 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
                     e.printStackTrace();
                 }
             }
+
+            //使用消息通知组 发送一个消息消息提示框表示模板创建完成
+            NotificationGroupManager.getInstance().getNotificationGroup("INFO_Notification").createNotification("aurora web project template created successfully!!", NotificationType.INFORMATION).notify(AuroraInstance.project);
         }
 
 

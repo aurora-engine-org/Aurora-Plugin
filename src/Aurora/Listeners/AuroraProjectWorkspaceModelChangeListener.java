@@ -11,8 +11,8 @@ import java.util.Iterator;
 public class AuroraProjectWorkspaceModelChangeListener implements WorkspaceModelChangeListener {
     @Override
     public void beforeChanged(@NotNull VersionedStorageChange versionedStorageChange) {
-//        System.out.println("AuroraProjectWorkspaceModelChangeListener beforeChanged");
 
+//        System.out.println("AuroraProjectWorkspaceModelChangeListener beforeChanged");
 
     }
 

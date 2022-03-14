@@ -29,17 +29,6 @@ public class AuroraModuleProvider extends FrameworkSupportInModuleProvider {
         return AuroraFramework.getInstance();
     }
 
-    @Override
-    public @NotNull @Nls(capitalization = Nls.Capitalization.Title) String getPresentableName() {
-        return "Aurora Web";
-    }
-
-    @Override
-    public @NotNull
-    Icon getIcon() {
-        return PluginIco.Logo;
-    }
-
     @NotNull
     @Override
     public FrameworkSupportInModuleConfigurable createConfigurable(@NotNull FrameworkSupportModel model) {

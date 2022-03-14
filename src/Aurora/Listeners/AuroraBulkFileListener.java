@@ -1,39 +1,45 @@
 package Aurora.Listeners;
 
+import Aurora.AuroraInstance;
 import Aurora.Framework.AuroraConfigurable;
-import com.intellij.internal.psiView.PsiViewerAction;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.roots.ProjectFileIndex;
-import com.intellij.openapi.vfs.LocalFileSystem;
-import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.ide.util.RunOnceUtil;
+import com.intellij.notification.NotificationGroupManager;
+import com.intellij.notification.NotificationType;
+import com.intellij.openapi.editor.EditorFactory;
 import com.intellij.openapi.vfs.newvfs.BulkFileListener;
 import com.intellij.openapi.vfs.newvfs.events.VFileEvent;
-import com.intellij.psi.PsiDocumentManager;
-import com.intellij.ui.EditorTextField;
 import org.jetbrains.annotations.NotNull;
 
-import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
 
+/*
+*   通过监听主模块的内容创建 点来执行我们需要生成的项目结构
+* */
 public class AuroraBulkFileListener implements BulkFileListener {
 
     @Override
     public void before(@NotNull List<? extends VFileEvent> events) {
         for (VFileEvent event:events){
-            //监听到go.mod文件创建后，开始生成 aurora 项目文件结构
-            if(event.getFile().getName().equals("go.mod")){
-                AuroraConfigurable.CreateAuroraWebProjectStructure(AuroraConfigurable.path);
-                //创建完成后执行一个打开的操作
-                //加载虚拟文件操作
-            }
 
         }
-        BulkFileListener.super.before(events);
     }
 
     @Override
     public void after(@NotNull List<? extends VFileEvent> events) {
-        BulkFileListener.super.after(events);
+        for (VFileEvent event:events){
+            //监听到go.mod文件创建之前，开始生成 aurora 项目文件结构
+            if(Objects.requireNonNull(event.getFile()).getName().equals("go.mod")){
+                //保证在整个项目中只运行一次
+                if (AuroraInstance.project!=null){
+                    RunOnceUtil.runOnceForProject(AuroraInstance.project, "create aurora template", () -> {
+                        NotificationGroupManager.getInstance().getNotificationGroup("INFO_Notification").createNotification("start building the project!", NotificationType.INFORMATION).notify(AuroraInstance.project);
+                        AuroraConfigurable.CreateAuroraWebProjectStructure(AuroraInstance.path);
+                    });
+                }
+            }
+
+        }
     }
 
 }
