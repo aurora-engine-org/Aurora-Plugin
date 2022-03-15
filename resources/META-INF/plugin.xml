@@ -31,39 +31,54 @@
 <!--  添加IDE对Aurora Framework的模块支持 未完成-->
 <!--    <moduleType id="aurora_web_module_type" implementationClass="Aurora.Modules.AuroraModule"/>-->
 
-<!--  添加IDEA对Aurora Framework的项目支持 核心-->
+<!--  添加IDEA对Aurora Framework的项目支持 核心 依赖Java-->
        <framework.type implementation="Aurora.Framework.AuroraFramework" id="AuroraFramework"/>
 
-<!--      声明消息组-->
+<!--      声明消息组扩展-->
       <notificationGroup displayType="BALLOON" id="INFO_Notification"/>
       <notificationGroup displayType="BALLOON" id="ERROR_Notification"/>
       <notificationGroup displayType="BALLOON" id="WRRING_Notification"/>
 
-      <editorFactoryListener implementation="Aurora.Listeners.AuroraEditorFactoryListener"/>
+<!--      编辑器创建监听扩展-->
+      <editorFactoryListener implementation="Aurora.Editors.AuroraEditorFactoryListener"/>
 
 
+<!--      编辑器鼠标监听扩展-->
       <editorFactoryMouseListener implementation="Aurora.Editors.AuroraEditorMouseListener"/>
       <editorFactoryMouseMotionListener implementation="Aurora.Editors.AuroraEditorMouseMotionListener"/>
 
-      <rawEditorTypedHandler implementationClass="Aurora.Editors.AuroraTypedActionHandler"/>
 
+      <fileEditorProvider implementation="Aurora.Providers.AuroraFileEditorProvider"/>
   </extensions>
 
   <actions>
     <!-- Add your actions here -->
+      <action id="EditorBasics.EditorIllustrationAction"
+              class="Aurora.Action.EditorAction"
+              text="Editor Replace Text"
+              description="Replaces selected text with 'Replacement'."
+              icon="AllIcons.Actions.Checked">
+          <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      </action>
   </actions>
 
 
   <applicationListeners>
+<!--      项目管理监听,打开或关闭项目-->
       <listener class="Aurora.Listeners.ProjectManagerListeners" topic="com.intellij.openapi.project.ProjectManagerListener"/>
+<!--      IDE 应用程序生命周期监听器-->
       <listener class="Aurora.Listeners.ApplicationListener" topic="com.intellij.ide.AppLifecycleListener"/>
+<!--      虚拟文件生成监听-->
       <listener class="Aurora.Listeners.AuroraBulkFileListener" topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
   </applicationListeners>
 
   <projectListeners>
+<!--      切换工具窗口监听-->
     <listener class="Aurora.Listeners.ToolWindowListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
+<!--      项目工具窗口监听-->
     <listener class="Aurora.Listeners.AuroraProjectViewListener" topic="com.intellij.ide.projectView.impl.ProjectViewListener"/>
-    <listener class="Aurora.Listeners.AuroraFileEditorManagerListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+<!--      文件编辑管理监听,打开,关闭-->
+    <listener class="Aurora.Editors.AuroraFileEditorManagerListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
   </projectListeners>
 
 </idea-plugin>

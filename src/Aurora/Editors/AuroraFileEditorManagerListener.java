@@ -1,4 +1,4 @@
-package Aurora.Listeners;
+package Aurora.Editors;
 
 import com.intellij.lang.Language;
 import com.intellij.openapi.fileEditor.*;
@@ -32,5 +32,15 @@ public class AuroraFileEditorManagerListener implements FileEditorManagerListene
     @Override
     public void selectionChanged(@NotNull FileEditorManagerEvent event) {
         FileEditorManagerListener.super.selectionChanged(event);
+    }
+
+    public void Ttt(PsiElement psiElement){
+        if (psiElement!=null){
+            System.out.println(psiElement.getText());
+            PsiElement[] children = psiElement.getChildren();
+            for (PsiElement p:children){
+                Ttt(p);
+            }
+        }
     }
 }

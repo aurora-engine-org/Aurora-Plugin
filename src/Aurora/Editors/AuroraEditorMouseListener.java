@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 public class AuroraEditorMouseListener implements EditorMouseListener {
     @Override
     public void mousePressed(@NotNull EditorMouseEvent event) {
-        System.out.println("mousePressed");
+
         EditorMouseListener.super.mousePressed(event);
     }
 
@@ -25,11 +25,13 @@ public class AuroraEditorMouseListener implements EditorMouseListener {
 
     @Override
     public void mouseEntered(@NotNull EditorMouseEvent event) {
+
         EditorMouseListener.super.mouseEntered(event);
     }
 
     @Override
     public void mouseExited(@NotNull EditorMouseEvent event) {
+
         EditorMouseListener.super.mouseExited(event);
     }
 }

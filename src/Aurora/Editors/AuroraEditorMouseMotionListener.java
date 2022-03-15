@@ -11,7 +11,6 @@ public class AuroraEditorMouseMotionListener implements EditorMouseMotionListene
 
     @Override
     public void mouseMoved(@NotNull EditorMouseEvent e) {
-        System.out.println("mouseMoved");
         EditorMouseMotionListener.super.mouseMoved(e);
     }
 
