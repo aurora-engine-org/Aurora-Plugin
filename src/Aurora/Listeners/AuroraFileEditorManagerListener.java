@@ -1,8 +1,12 @@
 package Aurora.Listeners;
 
+import com.intellij.lang.Language;
 import com.intellij.openapi.fileEditor.*;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.FileViewProvider;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
 import org.jetbrains.annotations.NotNull;
 
 public class AuroraFileEditorManagerListener implements FileEditorManagerListener {
@@ -11,8 +15,13 @@ public class AuroraFileEditorManagerListener implements FileEditorManagerListene
         FileEditorManagerListener.super.fileOpenedSync(source, file, editors);
     }
 
+    /*
+    *  文件被打开时候加载
+    * */
     @Override
     public void fileOpened(@NotNull FileEditorManager source, @NotNull VirtualFile file) {
+        System.out.println("open");
+        PsiFile psi = PsiManager.getInstance(source.getProject()).findFile(file);
         FileEditorManagerListener.super.fileOpened(source, file);
     }
 

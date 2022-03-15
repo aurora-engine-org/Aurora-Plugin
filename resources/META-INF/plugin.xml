@@ -15,7 +15,7 @@
 ]]>
   </description>
 
-  <idea-version since-build="213.0"/>
+  <idea-version since-build="213.3.2"/>
 
   <!-- Short summary of new features and bugfixes in the latest plugin version.
        Displayed on the Plugin Page and IDE Plugin Manager. Simple HTML elements can be included between <![CDATA[  ]]> tags. -->
@@ -23,12 +23,14 @@
 
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.java</depends>
-    <depends>com.intellij.modules.go-capable</depends>
+  <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.go-capable</depends>
+
   <extensions defaultExtensionNs="com.intellij">
 <!--  添加IDE对Aurora Framework的模块支持 未完成-->
 <!--    <moduleType id="aurora_web_module_type" implementationClass="Aurora.Modules.AuroraModule"/>-->
 
-<!--  添加IDE对Aurora Framework的项目支持 核心-->
+<!--  添加IDEA对Aurora Framework的项目支持 核心-->
        <framework.type implementation="Aurora.Framework.AuroraFramework" id="AuroraFramework"/>
 
 <!--      声明消息组-->
@@ -36,12 +38,8 @@
       <notificationGroup displayType="BALLOON" id="ERROR_Notification"/>
       <notificationGroup displayType="BALLOON" id="WRRING_Notification"/>
 
-
-
       <editorFactoryListener implementation="Aurora.Listeners.AuroraEditorFactoryListener"/>
-      <dom.uiControlsProvider implementation="Aurora.Listeners.AuroraUpdatedFilesListener"/>
       <editorTabTitleProvider implementation="Aurora.Editors.AuroraEditorTabTitleProvider"/>
-      <ApplicationLoadListener implementation="Aurora.Listeners.AuroraApplicationLoadListener"/>
   </extensions>
 
   <actions>
@@ -58,8 +56,7 @@
   <projectListeners>
     <listener class="Aurora.Listeners.ToolWindowListener" topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener"/>
     <listener class="Aurora.Listeners.AuroraProjectViewListener" topic="com.intellij.ide.projectView.impl.ProjectViewListener"/>
-    <listener class="Aurora.Listeners.AuroraProjectWorkspaceModelChangeListener" topic="com.intellij.workspaceModel.ide.WorkspaceModelChangeListener"/>
-      <listener class="Aurora.Listeners.AuroraFileEditorManagerListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+    <listener class="Aurora.Listeners.AuroraFileEditorManagerListener" topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
   </projectListeners>
 
 </idea-plugin>
