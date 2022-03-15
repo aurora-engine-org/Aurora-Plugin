@@ -24,6 +24,7 @@
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.java</depends>
   <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.all</depends>
   <depends>com.intellij.modules.go-capable</depends>
 
   <extensions defaultExtensionNs="com.intellij">
@@ -39,7 +40,13 @@
       <notificationGroup displayType="BALLOON" id="WRRING_Notification"/>
 
       <editorFactoryListener implementation="Aurora.Listeners.AuroraEditorFactoryListener"/>
-      <editorTabTitleProvider implementation="Aurora.Editors.AuroraEditorTabTitleProvider"/>
+
+
+      <editorFactoryMouseListener implementation="Aurora.Editors.AuroraEditorMouseListener"/>
+      <editorFactoryMouseMotionListener implementation="Aurora.Editors.AuroraEditorMouseMotionListener"/>
+
+      <rawEditorTypedHandler implementationClass="Aurora.Editors.AuroraTypedActionHandler"/>
+
   </extensions>
 
   <actions>
