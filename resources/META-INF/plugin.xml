@@ -49,6 +49,8 @@
 
 
       <fileEditorProvider implementation="Aurora.Providers.AuroraFileEditorProvider"/>
+
+      <keymapExtension implementation="Aurora.Key.AuroraKeymapExtension"/>
   </extensions>
 
   <actions>
