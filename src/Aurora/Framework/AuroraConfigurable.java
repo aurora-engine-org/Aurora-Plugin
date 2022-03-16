@@ -1,41 +1,27 @@
 package Aurora.Framework;
 
-import Aurora.AuroraInstance;
+import Aurora.Aurora;
 import com.intellij.framework.addSupport.FrameworkSupportInModuleConfigurable;
-import com.intellij.ide.ApplicationActivationStateManager;
-import com.intellij.ide.util.RunOnceUtil;
-import com.intellij.lang.Language;
+
 import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;
-import com.intellij.openapi.editor.Document;
-import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.editor.EditorFactory;
-import com.intellij.openapi.fileEditor.FileDocumentManager;
-import com.intellij.openapi.fileEditor.FileEditor;
-import com.intellij.openapi.fileEditor.FileEditorManager;
-import com.intellij.openapi.fileEditor.OpenFileDescriptor;
-import com.intellij.openapi.fileTypes.FileType;
+
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.roots.ModifiableModelsProvider;
 import com.intellij.openapi.roots.ModifiableRootModel;
-import com.intellij.openapi.roots.ProjectRootManager;
+
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.VirtualFileManager;
-import com.intellij.psi.FileViewProvider;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiManager;
-import com.intellij.ui.components.JBTextArea;
+
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.io.File;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.io.InputStream;
+
 import java.nio.charset.StandardCharsets;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
+
 
 public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
 
@@ -60,14 +46,14 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
     @Override
     public void addSupport(@NotNull Module module, @NotNull ModifiableRootModel rootModel, @NotNull ModifiableModelsProvider modifiableModelsProvider) {
         //初始化 全局变量
-        AuroraInstance.project = rootModel.getProject();
-        AuroraInstance.path= rootModel.getProject().getBasePath();
-        AuroraInstance.module=module;
-        AuroraInstance.modifiableModelsProvider=modifiableModelsProvider;
+        Aurora.project = rootModel.getProject();
+        Aurora.path= rootModel.getProject().getBasePath();
+        Aurora.module=module;
+        Aurora.modifiableModelsProvider=modifiableModelsProvider;
     }
     public static void CreateAuroraWebProjectStructure(String root)  {
         //加载 根路径的虚拟文件
-        VirtualFile rootVF = LocalFileSystem.getInstance().findFileByIoFile(new File(AuroraInstance.path));
+        VirtualFile rootVF = LocalFileSystem.getInstance().findFileByIoFile(new File(Aurora.path));
         VirtualFile resources =null;
         VirtualFile controllers=null;
         VirtualFile services=null;
@@ -80,7 +66,7 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
             //读取 mod文件 并拿到模块名称
             VirtualFile mod = rootVF.findChild("go.mod");
             if (mod==null){
-                NotificationGroupManager.getInstance().getNotificationGroup("ERROR_Notification").createNotification("Aurora web project template create a failure", NotificationType.ERROR).notify(AuroraInstance.project);
+                NotificationGroupManager.getInstance().getNotificationGroup("ERROR_Notification").createNotification("Aurora web project template create a failure", NotificationType.ERROR).notify(Aurora.project);
                 return;
             }
 
@@ -226,7 +212,7 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
             e.printStackTrace();
         } finally {
             //使用消息通知组 发送一个消息消息提示框表示模板创建完成
-            NotificationGroupManager.getInstance().getNotificationGroup("INFO_Notification").createNotification("Aurora web project template created successfully!!", NotificationType.INFORMATION).notify(AuroraInstance.project);
+            NotificationGroupManager.getInstance().getNotificationGroup("INFO_Notification").createNotification("Aurora web project template created successfully!!", NotificationType.INFORMATION).notify(Aurora.project);
         }
 
 
