@@ -2,11 +2,18 @@ package Aurora.Framework;
 
 import Aurora.AuroraInstance;
 import com.intellij.framework.addSupport.FrameworkSupportInModuleConfigurable;
+import com.intellij.ide.ApplicationActivationStateManager;
 import com.intellij.ide.util.RunOnceUtil;
 import com.intellij.lang.Language;
 import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;
+import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.EditorFactory;
+import com.intellij.openapi.fileEditor.FileDocumentManager;
+import com.intellij.openapi.fileEditor.FileEditor;
+import com.intellij.openapi.fileEditor.FileEditorManager;
+import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.roots.ModifiableModelsProvider;
@@ -18,6 +25,7 @@ import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
+import com.intellij.ui.components.JBTextArea;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -214,7 +222,6 @@ public class AuroraConfigurable extends FrameworkSupportInModuleConfigurable {
                     "\ta.Guide(\"8080\")\n" +
                     "}\n";
             application.setBinaryContent(mainTemplate.getBytes(StandardCharsets.UTF_8));
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

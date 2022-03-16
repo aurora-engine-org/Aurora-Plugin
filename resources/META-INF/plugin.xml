@@ -1,16 +1,18 @@
 <idea-plugin>
-  <id>Aurora</id>
-  <name>Aurora</name>
+  <id>aurora.framework</id>
+  <name>aurora</name>
   <version>1.0.0</version>
   <vendor email="zhiwen_der@qq.com" url="https://www.go-aurora.cn">Aurora-go</vendor>
   <description>
     <![CDATA[
-    Aurora web 框架的项目模板创建插件,有关模板中创建出来的文件内容详细说明可以找到这个库查看, github: https://github.com/aurora-go/template <br>
-    有关Aurora web 框架的使用指南可以在 https://github.com/aurora-go/aurora  中找到 <br>
-    使用插件之前你需要做到以下几点:<br>
+    The project template creation plug-in of the Aurora web framework, the detailed description of the file content created in the template can be found in this library to view
+    , github: https://github.com/aurora-go/template <br>
+    Instructions for using the Aurora web framework can be found at https://github.com/aurora-go/aurora  中找到 <br>
+    Before using the plugin you need to do the following:<br>
    <ol>
-    <li>已经安装了golang sdk</li>
-    <li>IDEA 中安装了go扩展</li>
+    <li>have installed golang sdk</li>
+    <li>The go extension is installed in IDEA</li>
+    <li>Currently only supports idea</li>
    </ol>
 ]]>
   </description>
@@ -48,20 +50,11 @@
       <editorFactoryMouseMotionListener implementation="Aurora.Editors.AuroraEditorMouseMotionListener"/>
 
 
-      <fileEditorProvider implementation="Aurora.Providers.AuroraFileEditorProvider"/>
 
-      <keymapExtension implementation="Aurora.Key.AuroraKeymapExtension"/>
   </extensions>
 
   <actions>
-    <!-- Add your actions here -->
-      <action id="EditorBasics.EditorIllustrationAction"
-              class="Aurora.Action.EditorAction"
-              text="Editor Replace Text"
-              description="Replaces selected text with 'Replacement'."
-              icon="AllIcons.Actions.Checked">
-          <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-      </action>
+
   </actions>
 
 
