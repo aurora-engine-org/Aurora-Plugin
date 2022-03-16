@@ -18,28 +18,6 @@ public class AuroraEditorMouseMotionListener implements EditorMouseMotionListene
 
     @Override
     public void mouseMoved(@NotNull EditorMouseEvent e) {
-        Editor editor = e.getEditor();
-        MouseEvent mouseEvent = e.getMouseEvent();
-        //获取鼠标覆盖的编辑区区域
-        if (e.getArea().toString().equals("EDITING_AREA")){
-            //检查是否覆盖文本
-            boolean overText = e.isOverText();
-            if (overText){
-                LogicalPosition logicalPosition = e.getLogicalPosition();
-                String s = logicalPosition.toString();
-                System.out.println(s);
-                //获取选择的文本内容
-                SelectionModel selectionModel = editor.getSelectionModel();
-
-                String selectedText = selectionModel.getSelectedText();
-                if (selectedText!=null){
-                    System.out.println(selectedText);
-                }
-                FoldRegion collapsedFoldRegion = e.getCollapsedFoldRegion();
-                String s1 = collapsedFoldRegion.toString();
-                System.out.println(s1);
-            }
-        }
         EditorMouseMotionListener.super.mouseMoved(e);
     }
 

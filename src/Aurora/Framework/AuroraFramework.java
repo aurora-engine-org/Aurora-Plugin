@@ -31,7 +31,7 @@ public class AuroraFramework extends FrameworkTypeEx {
     @Override
     public @NotNull
     @Nls(capitalization = Nls.Capitalization.Title) String getPresentableName() {
-        return "Aurora Web";
+        return "aurora web";
     }
 
     @Override

@@ -19,7 +19,6 @@ public class AuroraFileEditorManagerListener implements FileEditorManagerListene
     * */
     @Override
     public void fileOpened(@NotNull FileEditorManager source, @NotNull VirtualFile file) {
-        PsiFile psi = PsiManager.getInstance(source.getProject()).findFile(file);
 
         FileEditorManagerListener.super.fileOpened(source, file);
     }
