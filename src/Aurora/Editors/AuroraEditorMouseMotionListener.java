@@ -1,5 +1,6 @@
 package Aurora.Editors;
 
+import com.goide.psi.GoRecursiveVisitor;
 import com.goide.psi.impl.GoStringLiteralImpl;
 import com.intellij.openapi.editor.*;
 import com.intellij.openapi.editor.event.EditorMouseEvent;
@@ -26,17 +27,7 @@ public class AuroraEditorMouseMotionListener implements EditorMouseMotionListene
 
     @Override
     public void mouseMoved(@NotNull EditorMouseEvent e) {
-        //EditorMouseEventArea.EDITING_AREA 选择鼠标在编辑区内 && e.isOverText() 覆盖到文本
-        if (e.getArea().toString().equals(EditorMouseEventArea.EDITING_AREA.toString()) && e.isOverText()){
-            Editor editor = e.getEditor();
-            Project project = editor.getProject();
-            Document document = editor.getDocument();
-            VirtualFile file = FileDocumentManager.getInstance().getFile(document);
-            PsiFile psiFile = PsiDocumentManager.getInstance(project).getPsiFile(document);
-            GoStringLiteralImpl childOfAnyType = PsiTreeUtil.findChildOfAnyType(psiFile, true, GoStringLiteralImpl.class);
-            String decodedText = childOfAnyType.getDecodedText();
-            System.out.println(decodedText);
-        }
+
     }
 
     public void select(){

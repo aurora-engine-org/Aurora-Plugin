@@ -1,12 +1,10 @@
 package Aurora.Editors;
-
-import com.intellij.lang.Language;
 import com.intellij.openapi.fileEditor.*;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.*;
-import com.intellij.psi.templateLanguages.OuterLanguageElement;
+
 import org.jetbrains.annotations.NotNull;
+
 
 public class AuroraFileEditorManagerListener implements FileEditorManagerListener {
     @Override
@@ -20,7 +18,6 @@ public class AuroraFileEditorManagerListener implements FileEditorManagerListene
     @Override
     public void fileOpened(@NotNull FileEditorManager source, @NotNull VirtualFile file) {
 
-        FileEditorManagerListener.super.fileOpened(source, file);
     }
 
     @Override
@@ -33,13 +30,4 @@ public class AuroraFileEditorManagerListener implements FileEditorManagerListene
         FileEditorManagerListener.super.selectionChanged(event);
     }
 
-    public void Ttt(PsiElement psiElement){
-        if (psiElement!=null){
-            System.out.println(psiElement.getText());
-            PsiElement[] children = psiElement.getChildren();
-            for (PsiElement p:children){
-                Ttt(p);
-            }
-        }
-    }
 }

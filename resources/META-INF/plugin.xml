@@ -26,8 +26,6 @@
   <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.lang</depends>
-    <depends>com.intellij.modules.all</depends>
-  <depends>com.intellij.modules.go-capable</depends>
   <extensions defaultExtensionNs="com.intellij">
 <!--  添加IDE对Aurora Framework的模块支持 未完成-->
 <!--    <moduleType id="aurora_web_module_type" implementationClass="Aurora.Modules.AuroraModule"/>-->
