@@ -1,13 +1,13 @@
 <idea-plugin>
-  <id>aurora.framework</id>
-  <name>aurora</name>
+  <id>awen.aurora</id>
+  <name>template</name>
   <version>1.0.0</version>
-  <vendor email="zhiwen_der@qq.com" url="https://www.go-aurora.cn">Aurora-go</vendor>
+  <vendor>aurora</vendor>
   <description>
     <![CDATA[
     The project template creation plug-in of the Aurora web framework, the detailed description of the file content created in the template can be found in this library to view
     , github: https://github.com/aurora-go/template <br>
-    Instructions for using the Aurora web framework can be found at https://github.com/aurora-go/aurora  中找到 <br>
+    Instructions for using the Aurora web framework can be found at https://github.com/aurora-go/aurora <br>
     Before using the plugin you need to do the following:<br>
    <ol>
     <li>have installed golang sdk</li>

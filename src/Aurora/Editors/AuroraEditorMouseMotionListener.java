@@ -1,22 +1,9 @@
 package Aurora.Editors;
 
-import com.goide.psi.GoRecursiveVisitor;
-import com.goide.psi.impl.GoStringLiteralImpl;
-import com.intellij.openapi.editor.*;
+
 import com.intellij.openapi.editor.event.EditorMouseEvent;
-import com.intellij.openapi.editor.event.EditorMouseEventArea;
 import com.intellij.openapi.editor.event.EditorMouseMotionListener;
 
-import com.intellij.openapi.fileEditor.FileDocumentManager;
-
-import com.intellij.openapi.project.Project;
-
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiDocumentManager;
-
-import com.intellij.psi.PsiFile;
-
-import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
 
 
