@@ -25,14 +25,7 @@ public class AuroraEditorMouseListener implements EditorMouseListener {
 
     @Override
     public void mouseClicked(@NotNull EditorMouseEvent event) {
-        LogicalPosition logicalPosition = event.getLogicalPosition();
-        Editor editor = event.getEditor();
-        PsiFile psiFile = PsiDocumentManager.getInstance(editor.getProject()).getPsiFile(editor.getDocument());
-        Collection<GoStringLiteralImpl> childrenOfAnyType = PsiTreeUtil.findChildrenOfAnyType(psiFile, true, GoStringLiteralImpl.class);
-        for (GoStringLiteralImpl stringLiteral:childrenOfAnyType){
-            String text = stringLiteral.getString().getText();
-            System.out.println(text);
-        }
+
     }
 
     @Override

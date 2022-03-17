@@ -16,7 +16,6 @@ public class Aurora {
     public static ModifiableModelsProvider modifiableModelsProvider;
     //模块
     public static Module module;
-
     //静态资源
     public static String staticRoot;
 }

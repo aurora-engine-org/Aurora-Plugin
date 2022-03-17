@@ -11,8 +11,7 @@ import org.jetbrains.annotations.Nullable;
 public class AuroraProjectViewListener implements ProjectViewListener {
     @Override
     public void paneShown(@NotNull AbstractProjectViewPane current, @Nullable AbstractProjectViewPane previous) {
-//        String title = current.getTitle();
-//        System.out.println("title:"+title);
+
         ProjectViewListener.super.paneShown(current, previous);
     }
 }

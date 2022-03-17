@@ -12,10 +12,7 @@ public final class ApplicationListener implements AppLifecycleListener {
 
     @Override
     public void appFrameCreated(@NotNull List<String> commandLineArgs) {
-//        System.out.println("appFrameCreated");
-        for (String s:commandLineArgs){
-            System.out.println(s);
-        }
+
         AppLifecycleListener.super.appFrameCreated(commandLineArgs);
     }
 
