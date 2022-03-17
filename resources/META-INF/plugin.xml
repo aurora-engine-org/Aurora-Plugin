@@ -31,8 +31,8 @@
 <!--    <moduleType id="aurora_web_module_type" implementationClass="Aurora.Modules.AuroraModule"/>-->
 
 <!--  添加IDEA对Aurora Framework的项目支持 核心 依赖Java-->
-       <framework.type implementation="Aurora.Framework.AuroraFramework" id="AuroraFramework"/>
-
+      <framework.type implementation="Aurora.Framework.AuroraFramework" id="AuroraFramework"/>
+      <moduleBuilder id="aurora_setp" order="first" builderClass="Aurora.Steps.AuroraGoStep" />
 <!--      声明消息组扩展-->
       <notificationGroup displayType="BALLOON" id="INFO_Notification"/>
       <notificationGroup displayType="BALLOON" id="ERROR_Notification"/>

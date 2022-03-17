@@ -7,6 +7,7 @@ import com.intellij.ide.util.projectWizard.WizardContext;
 import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.module.ModuleTypeManager;
 import com.intellij.openapi.module.WebModuleType;
+import com.intellij.openapi.module.WebModuleTypeBase;
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
 
 import javax.swing.*;
@@ -15,7 +16,8 @@ public class AuroraGoStep extends ModuleBuilder {
 
     @Override
     public ModuleType getModuleType() {
-        return ModuleTypeManager.getInstance().findByID(WebModuleType.WEB_MODULE);
+
+        return WebModuleTypeBase.getInstance();
     }
 
     @Override
